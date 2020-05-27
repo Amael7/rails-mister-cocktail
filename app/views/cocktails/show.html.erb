@@ -13,8 +13,31 @@
   <% end %>
 </ul>
 
+<h3>Reviews</h3>
+<ul>
+  <% @cocktail.reviews.each do |review| %>
+    <li>
+      <% count = 0 %>
+      <% 5.times do %>
+        <% if review.rating > count %>
+          <i class="fas fa-star"></i>
+        <% else %>
+          <i class="far fa-star"></i>
+        <% end %>
+        <% count += 1 %>
+      <% end %>
+      <p><%= review.content %></p>
+    </li>
+  <% end %>
+</ul>
+
+
 <div>
   <%= render "doses/new", cocktail: @cocktail, dose: @dose %>
+</div>
+
+<div>
+  <%= render "reviews/new", cocktail: @cocktail, review: @review %>
 </div>
 
 <%= link_to 'Back to the list', cocktails_path %>
